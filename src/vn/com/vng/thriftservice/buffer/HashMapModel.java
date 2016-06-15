@@ -36,10 +36,9 @@ public class HashMapModel {
      * @return value of the given key
      */
     public GetResult getData(String key) {
-        if (hashMap.containsKey(key)) {
-            String value = hashMap.get(key);
-            GetResult result = new GetResult(false);
-            return result.setValue(value);
+        String value = hashMap.get(key);
+        if (value != null) {
+            return (new GetResult(false)).setValue(value);
         } else {
             return new GetResult(true);
         }
@@ -53,13 +52,7 @@ public class HashMapModel {
      * @return true if successful, otherwise false
      */
     public boolean setData(String key, String value) {
-        if (hashMap.containsKey(key)) {
-            if (!hashMap.get(key).equals(value))
-                hashMap.replace(key, value);
-        } else {
-            hashMap.put(key, value);
-        }
-
+        hashMap.put(key, value);
         return true;
     }
 
@@ -70,10 +63,7 @@ public class HashMapModel {
      * @return true if successful, otherwise false
      */
     public boolean removeData(String key) {
-        if (hashMap.containsKey(key)) {
-            hashMap.remove(key);
-        }
-
+        hashMap.remove(key);
         return true;
     }
 }
